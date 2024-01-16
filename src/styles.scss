@@ -1,33 +1,31 @@
 
-html, body { height: 100%; }
+body{
+    min-height:100vh;
+}
+
+
+html, body { 
+    height: 100%;
+    background-color: #D6D6D6;
+}
 
 body {
-    margin: 0; 
-    min-height:100vh;
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    margin: 0;
+    min-height: 100vh;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 
 header {
     text-align: start!important;
 }
 
-app-cover, app-menu{
+app-root, app-login, app-sign-in, app-menu{
     flex:1;
-}
-
-#wrapper{
-    text-align:start;
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
-}
-
-.container{
-    flex:1;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 @media only screen and (max-width: 700px) {
@@ -35,4 +33,3 @@ app-cover, app-menu{
     margin: 10px;
 }
 }
-

@@ -15,7 +15,12 @@ export class MainService {
     }
 
     isUserLoggedIn(): boolean{
-        return false;
+        return true;
     }
+
+    login(email: string, password: string){
+
+    }
+
 
 }

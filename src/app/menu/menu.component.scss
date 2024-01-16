@@ -1,0 +1,37 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#drawer{
+    height: 80%;
+    width: 10%;
+    background-color: white;
+    margin: 20px 10px;
+    border-radius: 15px;
+    border: 2px solid #C0C0C0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#content{
+    height: 100%;
+    width: 100%;
+}
+
+.menu-item{
+    margin: 20px 10px;
+    text-align: center;
+}
+
+mat-icon{
+    font-size: 40px;
+    height: auto;
+    width: auto;
+    color: #C0C0C0;
+}
