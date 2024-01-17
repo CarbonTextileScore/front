@@ -1,0 +1,59 @@
+.container{
+    height: 100%;
+    width: 100%;
+    padding: 20px 40px;
+}
+
+.subContainer{
+    padding: 15px;
+    margin: 10px;
+    background-color: #2B2D31;
+    border-radius: 15px;
+    border: 1px solid black;
+
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.pageTitle {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+    color: white;
+    font-weight: bold;
+    font-size:xx-large;
+}
+
+
+a {
+    all: unset;
+}
+
+.sale-image {
+    border-radius: 20px 20px 0 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.card-title {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.card-price {
+    display: inline-block;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.card-city {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.card-description {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
