@@ -32,6 +32,7 @@ import { BarterService } from './menu/barter/barter.service';
 import { TrainingService } from './menu/training/training.service';
 import { AuthService } from 'src/services/auth.service';
 import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.service';
+import { TrainingDialogComponent } from './menu/training/training-dialog/training-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.se
     BarterComponent,
     TrainingComponent,
     LoginComponent,
+    TrainingDialogComponent,
   ],
   imports: [
     BrowserModule,

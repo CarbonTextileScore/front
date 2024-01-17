@@ -22,16 +22,19 @@ h1{
     margin: 25px 0px 10px 0px;
 }
 
-.video{
-    min-width: 20%;
-    max-width: 20%;
+#video{
+    min-width: 25%;
+    max-width: 25%;
     background-color: #2B2D31;
     border-radius: 0 0 5px 5px;
     border: 1px solid black;
 }
 
-.videoDatas{
+#data{
     padding: 0 7px 7px 7px;
+}
+
+#data>div>div{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

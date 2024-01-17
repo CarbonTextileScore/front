@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { trainingDTO } from './training.DTO';
 import { VideoCategoryModel } from 'src/models/VideoCategory.model';
 import { User } from 'src/models/User.model';
+import { MatDialog } from '@angular/material/dialog';
+import { TrainingDialogComponent } from './training-dialog/training-dialog.component';
 
 interface FilteredDTO {
   categoryId: number;
@@ -45,6 +47,10 @@ export class TrainingComponent implements OnInit{
 
   filteredVideoList: FilteredDTO[] = [];
 
+  constructor(
+    public dialog: MatDialog
+  ){}
+
 
   ngOnInit(): void {
     let categoriesDistinctes = [...new Set(this.videos.map(item => item.categoryId))];
@@ -60,6 +66,12 @@ export class TrainingComponent implements OnInit{
     });
   }
 
-  
+  openMedia(video: trainingDTO){
+    console.log(1, video);
+    this.dialog.open(TrainingDialogComponent, {
+      data: video
+    });
+
+  }
 
 }
