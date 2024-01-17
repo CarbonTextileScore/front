@@ -25,7 +25,13 @@ import { QuotaDashbaordComponent } from './menu/quota-dashbaord/quota-dashbaord.
 import { BarterComponent } from './menu/barter/barter.component';
 import { TrainingComponent } from './menu/training/training.component';
 import { LoginComponent } from './login/login.component';
-import { SignInComponent } from './sign-in/sign-in.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginService } from './login/login.service';
+import { BarterService } from './menu/barter/barter.service';
+import { TrainingService } from './menu/training/training.service';
+import { AuthService } from 'src/services/auth.service';
+import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
     BarterComponent,
     TrainingComponent,
     LoginComponent,
-    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +62,11 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatChipsModule,
     MatDialogModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    FlexLayoutModule
   ],
-  providers: [httpInterceptorProviders, MainService],
+  providers: [httpInterceptorProviders, AuthService, MainService, LoginService, BarterService, QuotaDashboardService, TrainingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

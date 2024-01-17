@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { User } from "src/models/User.model";
 
@@ -6,7 +7,9 @@ export class MainService {
 
     private user: User;
 
-    constructor() {
+    constructor(
+        private httpClient: HttpClient
+    ) {
         this.user = new User(1, "Jade", "Christien", 14, 22);
      }
 
