@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { trainingDTO } from './training.DTO';
 import { VideoCategoryModel } from 'src/models/VideoCategory.model';
-import { User } from 'src/models/User.model';
 import { MatDialog } from '@angular/material/dialog';
 import { TrainingDialogComponent } from './training-dialog/training-dialog.component';
 
@@ -16,11 +15,9 @@ interface FilteredDTO {
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.scss']
 })
-export class TrainingComponent implements OnInit{
+export class TrainingComponent implements OnInit, AfterViewInit {
 
-  users: User[] = [
-    new User(2, "Jade", "Christien", 14, 22)
-  ]
+  // Fausses données pour tester sans API
 
   videoCategories: VideoCategoryModel[] = [
     new VideoCategoryModel(1, "Créez vos vêtements"),
@@ -32,24 +29,25 @@ export class TrainingComponent implements OnInit{
   private userPicture: string = "/assets/resources/user_picture.jpg";
 
   videos: trainingDTO[] = [
+    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.1, "Jade Christien", this.userPicture),
     new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.3, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.4, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.5, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.1, "Jade Christien", this.userPicture),
     new trainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.2, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.1, "Jade Christien", this.userPicture),
     new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.3, "Jade Christien", this.userPicture),
+    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.4, "Jade Christien", this.userPicture),
   ];
 
+  // Variables
   filteredVideoList: FilteredDTO[] = [];
+  @ViewChildren('scrollContainer') scrollContainers!: QueryList<ElementRef>;
+  scrollValue: number = 600;
 
-  constructor(
-    public dialog: MatDialog
-  ){}
+  constructor(public dialog: MatDialog){}
 
 
   ngOnInit(): void {
@@ -63,6 +61,12 @@ export class TrainingComponent implements OnInit{
         videoList: this.videos.filter(item => item.categoryId === categoryId)
       };
       this.filteredVideoList.push(filteredVideos)
+    });    
+  }
+
+  ngAfterViewInit() {
+    this.scrollContainers.forEach((container, index) => {
+      this.checkVisibility(container.nativeElement, index);
     });
   }
 
@@ -71,7 +75,25 @@ export class TrainingComponent implements OnInit{
     this.dialog.open(TrainingDialogComponent, {
       data: video
     });
-
+  }
+ 
+  scroll(index: number, direction: string) {
+    const container = this.scrollContainers.toArray()[index].nativeElement;
+    if(direction == "left"){
+      container.scrollLeft -= this.scrollValue;
+    }else if(direction == "right"){
+      container.scrollLeft += this.scrollValue;
+    }
+      this.checkVisibility(container, index);
+  }
+  
+  checkVisibility(container: HTMLElement, index: number) {
+    const leftButton = document.getElementById(`left${index}`);
+    const rightButton = document.getElementById(`right${index}`);
+    if (leftButton && rightButton) {
+      leftButton.style.display = container.scrollLeft === 0 ? 'none' : 'block';
+      rightButton.style.display = container.scrollLeft + container.clientWidth >= container.scrollWidth ? 'none' : 'block';
+    }
   }
 
 }
