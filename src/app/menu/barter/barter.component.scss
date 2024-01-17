@@ -36,16 +36,15 @@ a {
 }
 
 .card-title {
-    display: inline-block;
     font-weight: bold;
     margin-right: 10%;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 .card-price {
-    display: inline-block;
     margin-bottom: 0;
     padding-bottom: 0;
+    float: right;
 }
 
 .card-city {
