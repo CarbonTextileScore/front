@@ -1,29 +1,47 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { User } from "src/models/User.model";
+import { CookieService } from "ngx-cookie-service";
+import { AuthModel } from "src/models/Auth.model";
+import { JWTToken } from "src/models/JWTToken.model";
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+	providedIn: 'root'
+})
 export class MainService {
 
-    private user: User;
+	private readonly TOKEN_KEY = 'authToken';
+  private readonly USER_KEY = 'authUser';
 
-    constructor(
-        private httpClient: HttpClient
-    ) {
-        this.user = new User(1, "Jade", "Christien", 14, 22);
-     }
+	constructor(
+		private cookieService: CookieService
+	) {}
 
-    getUserId(): number{
-        return this.user.id;
-    }
+	getAuth(): AuthModel{
+    return <AuthModel>JSON.parse(this.cookieService.get(this.USER_KEY));
+  }
 
-    isUserLoggedIn(): boolean{
-        return true;
-    }
+	setAuth(_user: AuthModel){
+    this.cookieService.set(this.USER_KEY, JSON.stringify(_user), undefined, '/');
+  }
 
-    login(email: string, password: string){
+  setToken(_token: JWTToken){
+    this.cookieService.set(this.TOKEN_KEY, JSON.stringify(_token), undefined, '/');
+  }
 
-    }
+  getToken(): JWTToken{
+    return <JWTToken>JSON.parse(this.cookieService.get(this.TOKEN_KEY));
+  }
 
+	deleteToken() {
+    this.cookieService.delete(this.TOKEN_KEY, '/');
+  }
+
+	deleteAuth() {
+    this.cookieService.delete(this.USER_KEY, '/');
+  }
+
+	isLoggedIn(): boolean {
+    // return this.cookieService.check(this.TOKEN_KEY);
+		return false;
+  }
 
 }
