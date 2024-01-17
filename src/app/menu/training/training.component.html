@@ -1,1 +1,31 @@
-<p>training works!</p>
+
+<div class="container" fxLayout="column" fxLayoutAlign="start stretch">
+    <h1>Formations</h1>
+
+    <div *ngFor="let categoryVideos of this.filteredVideoList" class="category">
+        <h2> {{categoryVideos.categoryName}} </h2>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+            <div *ngFor="let video of categoryVideos.videoList" class="video">
+              <img src="{{video.video}}" alt="image" id="videoPicture"/>
+
+              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="videoDatas">
+                <img src="{{video.userPicture}}" alt="image" id="userPicture" fxFlex="20"/>
+
+                <div fxLayout="column" fxLayoutAlign="start stretch">
+                    <div>{{video.name}}</div>
+                    <div id="username">{{video.userFullName}}</div>
+                    <div id="score">{{video.score}} étoiles</div>
+                </div>
+              </div>
+
+            </div>
+
+        </div> 
+
+    </div>
+</div>
+
+
+  
+  

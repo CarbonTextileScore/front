@@ -1,0 +1,51 @@
+.container{
+    width: 100%;
+    padding: 20px;
+}
+
+#videoPicture{
+    max-width: 100%;
+}
+
+h2{
+    font-size: 22px;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.category{
+    margin: 25px 0px 10px 0px;
+}
+
+.video{
+    min-width: 20%;
+    max-width: 20%;
+    background-color: #2B2D31;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid black;
+}
+
+.videoDatas{
+    padding: 0 7px 7px 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#userPicture{
+    border-radius: 30px;
+}
+
+#username{
+    font-style: italic;
+    font-size: 12px;
+}
+
+#score{
+    font-size: 12px;
+}
