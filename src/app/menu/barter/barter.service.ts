@@ -8,14 +8,11 @@ import { MarketItemDTO } from "./barter.DTO";
 export class BarterService {
     private apiUrl = '';
 
-    constructor(
-        private httpClient: HttpClient
-    ) {}
+    constructor(private httpClient: HttpClient) {}
 
-    getMarketItems():Observable<MarketItemDTO> {
+    getMarketItems():Observable<MarketItemDTO[]> {
         // Il faudra peut-être un paramètre
-        // là ça va récupérer les trucs 1 par 1, faudrait en récupérer plusieurs
         const url = ''; // Faire l'appel API, on verra comment ça marche
-        return this.httpClient.get<MarketItemDTO>(url);
+        return this.httpClient.get<MarketItemDTO[]>(url);
     }
 }
