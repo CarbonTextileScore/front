@@ -1,4 +1,4 @@
-export class trainingDTO {
+export class TrainingDTO {
 
     id: number;
     name: string;
