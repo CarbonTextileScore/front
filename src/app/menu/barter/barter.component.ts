@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BarterService } from './barter.service';
-import { MarketItemDTO } from './barter.DTO';
+import { MarketItemDTO } from '../../domain/barter.DTO';
 
 @Component({
   selector: 'app-barter',
@@ -9,8 +9,8 @@ import { MarketItemDTO } from './barter.DTO';
 })
 
 export class BarterComponent implements OnInit {
-  searchTerm: string = '';
 
+  searchTerm: string = '';
 
   // Fausses données pour tester sans API
   marketItems: MarketItemDTO[] = [
@@ -25,19 +25,28 @@ export class BarterComponent implements OnInit {
     new MarketItemDTO("Jean délavé", 31, "Jouy-en-Josas", "Jean presque neuf.\nOffre à saisir.", "https://img.freepik.com/photos-gratuite/jetee-au-bord-lac-hallstatt-autriche_181624-44201.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705449600&semt=ais", "#"),
   ]
 
-  constructor(private service:BarterService) {
-  }
+  filteredMarketItems: MarketItemDTO[] = [];
+
+  constructor(
+    private barterService: BarterService
+  ) {}
 
   ngOnInit(): void {
-    this.service.getMarketItems().subscribe((items) => {
-      // try to get an array with all items given by the database
-      this.marketItems = items;
-    })
+    this.filteredMarketItems = this.marketItems;
+    // this.barterService.getMarketItems().subscribe((items) => {
+    //   this.marketItems = items;
+    //   this.filteredMarketItems = items;
+    // });
   }
   
-  search() {
-    this.service.getMarketItemsWithKeyword(this.searchTerm).subscribe((items) => {
-      this.marketItems = items;
-    })
-  }
+  search(): void {
+    this.marketItems = this.filteredMarketItems.filter(item => {
+      return (item.title.toLowerCase().includes(this.searchTerm.toLowerCase())) || 
+        (item.city.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+        (item.price.toString().includes(this.searchTerm)) ||
+        (item.description.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    });
+ 
+}
+
 }

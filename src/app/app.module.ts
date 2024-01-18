@@ -31,8 +31,6 @@ import { BarterService } from './menu/barter/barter.service';
 import { TrainingService } from './menu/training/training.service';
 import { AuthService } from 'src/services/auth.service';
 import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.service';
-import CircleProgress from 'js-circle-progress';
-import { createCustomElement } from '@angular/elements';
 import { TrainingDialogComponent } from './menu/training/training-dialog/training-dialog.component';
 
 

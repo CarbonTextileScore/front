@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { trainingDTO } from '../training.DTO';
+import { TrainingDTO } from 'src/app/domain/training.DTO';
 
 @Component({
   selector: 'app-training-dialog',
@@ -10,7 +10,7 @@ import { trainingDTO } from '../training.DTO';
 export class TrainingDialogComponent implements OnInit{
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: trainingDTO
+    @Inject(MAT_DIALOG_DATA) public data: TrainingDTO
   ) {}
 
   ngOnInit(): void {

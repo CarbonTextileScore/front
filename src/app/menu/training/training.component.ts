@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { trainingDTO } from './training.DTO';
+import { TrainingDTO } from '../../domain/training.DTO';
 import { VideoCategoryModel } from 'src/models/VideoCategory.model';
 import { MatDialog } from '@angular/material/dialog';
 import { TrainingDialogComponent } from './training-dialog/training-dialog.component';
+import { TrainingService } from './training.service';
 
 interface FilteredDTO {
   categoryId: number;
   categoryName: string;
-  videoList: trainingDTO[]
+  videoList: TrainingDTO[]
 }
 
 @Component({
@@ -28,18 +29,18 @@ export class TrainingComponent implements OnInit, AfterViewInit {
   private videoPicture: string = "/assets/resources/video_picture.jpg";
   private userPicture: string = "/assets/resources/user_picture.jpg";
 
-  videos: trainingDTO[] = [
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.1, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.3, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.4, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.5, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.1, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.1, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.3, "Jade Christien", this.userPicture),
-    new trainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.4, "Jade Christien", this.userPicture),
+  videos: TrainingDTO[] = [
+    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.1, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.3, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.4, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.5, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.1, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.2, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.1, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.3, "Jade Christien", this.userPicture),
+    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.4, "Jade Christien", this.userPicture),
   ];
 
   // Variables
@@ -47,10 +48,14 @@ export class TrainingComponent implements OnInit, AfterViewInit {
   @ViewChildren('scrollContainer') scrollContainers!: QueryList<ElementRef>;
   scrollValue: number = 600;
 
-  constructor(public dialog: MatDialog){}
+  constructor(
+    private trainingService: TrainingService,
+    private dialog: MatDialog
+    ){}
 
 
   ngOnInit(): void {
+
     let categoriesDistinctes = [...new Set(this.videos.map(item => item.categoryId))];
     categoriesDistinctes.forEach(categoryId => {
       let category = this.videoCategories.find(category => category.id === categoryId);
@@ -62,6 +67,26 @@ export class TrainingComponent implements OnInit, AfterViewInit {
       };
       this.filteredVideoList.push(filteredVideos)
     });    
+
+    // this.trainingService.getCategories().subscribe((categories)=>{
+    //   this.videoCategories = categories;
+    //   this.trainingService.getVideos().subscribe((videos)=>{
+    //     this.videos = videos;
+
+    //     let categoriesDistinctes = [...new Set(this.videos.map(item => item.categoryId))];
+    //     categoriesDistinctes.forEach(categoryId => {
+    //       let category = this.videoCategories.find(category => category.id === categoryId);
+    //       let categoryName = category ? category.name : "";
+    //       const filteredVideos: FilteredDTO = {
+    //         categoryId: categoryId,
+    //         categoryName: categoryName,
+    //         videoList: this.videos.filter(item => item.categoryId === categoryId)
+    //       };
+    //       this.filteredVideoList.push(filteredVideos)
+    //     });    
+
+    //   });
+    // });
   }
 
   ngAfterViewInit() {
@@ -70,7 +95,7 @@ export class TrainingComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openMedia(video: trainingDTO){
+  openMedia(video: TrainingDTO){
     console.log(1, video);
     this.dialog.open(TrainingDialogComponent, {
       data: video,
