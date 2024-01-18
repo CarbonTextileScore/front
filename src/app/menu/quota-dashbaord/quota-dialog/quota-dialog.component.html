@@ -1,0 +1,14 @@
+
+<h1 mat-dialog-title>Actions possibles</h1>
+
+<p>Vous avez atteint le quota maximal.<br/>Vous devez donc effectuer une des actions ci-dessous.</p>
+<mat-dialog-content>
+    <div class="action-item" *ngFor="let action of actions">
+      <h1>{{action.label}}</h1>
+      <p>{{action.quota}} cc</p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Fermer</button>
+</mat-dialog-actions>

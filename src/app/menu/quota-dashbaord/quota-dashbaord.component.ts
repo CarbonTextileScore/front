@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { QuotaDashboardService } from './quota-dashboard.service';
 import CircleProgress from 'js-circle-progress';
 import { Invoice, UserDto , City} from 'src/app/domain/user.dto';
+import { MatDialog } from '@angular/material/dialog';
+import { QuotaDialogComponent } from './quota-dialog/quota-dialog.component';
 
 @Component({
   selector: 'app-quota-dashbaord',
@@ -14,7 +16,12 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
 
   user: UserDto = new UserDto;
 
-  constructor(private service: QuotaDashboardService) {
+  constructor(private service: QuotaDashboardService,
+    private dialog: MatDialog) {
+  }
+
+  openDialog(){
+    this.dialog.open(QuotaDialogComponent);
   }
 
   round(numb: number) {
@@ -139,7 +146,7 @@ function getUser() {
     user.age = 40;
     user.birthdate = "01/01/2001";
     user.familyQuota = 2;
-    user.personalQuota = 1;
+    user.personalQuota = 100;
     user.familyMembers = [
       fam,fam,fam,fam,fam,fam,fam
     ];
