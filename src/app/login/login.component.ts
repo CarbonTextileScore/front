@@ -13,8 +13,22 @@ export class LoginComponent {
   public hide: Boolean = true;
 
   public authenticationForm = this.formBuilder.group({
-    email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", Validators.required),
+    username: new FormControl("",
+      {
+        nonNullable: true,
+        validators: [
+          Validators.required
+        ]
+      }
+    ),
+    password: new FormControl("",
+      {
+        nonNullable: true,
+        validators: [
+          Validators.required
+        ]
+      }
+    ),
   })
 
   constructor(
@@ -24,16 +38,8 @@ export class LoginComponent {
   ){}
 
   signIn() {
-    const emailControl = this.authenticationForm.get("email");
-    const passwordControl = this.authenticationForm.get("password");
-
-    if (emailControl?.valid && passwordControl?.valid) {
-      const emailValue = emailControl.value;
-      const passwordValue = passwordControl.value;
-
-      if (emailValue && passwordValue) {
-        this.authService.login(emailValue, passwordValue);
-      }
+    if (this.authenticationForm?.valid) {
+      this.authService.login(this.authenticationForm.value);
     }
   }
 
