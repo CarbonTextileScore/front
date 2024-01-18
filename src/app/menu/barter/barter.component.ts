@@ -20,7 +20,6 @@ export class BarterComponent implements OnInit {
 
   ngOnInit(): void {
     this.barterService.getMarketItems().subscribe((items) => {
-      console.log(0, items)
       this.marketItems = items;
       this.filteredMarketItems = items;
     });

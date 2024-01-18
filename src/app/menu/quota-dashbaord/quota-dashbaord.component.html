@@ -34,7 +34,7 @@
         <div class="quota__text--big">{{round(user.personalQuota!)}}</div>
         <div class="quota__overloaded" *ngIf="user.personalQuota! > 99">
             Attention,<br/>Vous avez dépassé<br/>votre quota. Vous devez<br/>résoudre ce problème<br/>sous 15 jours
-            <div class="quota__overloaded__button">Résoudre</div>
+            <div class="quota__overloaded__button" (click)="openDialog()">Résoudre</div>
         </div>
         <p class="quota--reset">Réinitialisé le 31/12/2058</p>
     </div>

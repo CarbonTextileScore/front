@@ -33,6 +33,8 @@ import { AuthService } from 'src/services/auth.service';
 import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.service';
 import { TrainingDialogComponent } from './menu/training/training-dialog/training-dialog.component';
 
+import { QuotaDialogComponent } from './menu/quota-dashbaord/quota-dialog/quota-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { TrainingDialogComponent } from './menu/training/training-dialog/trainin
     TrainingComponent,
     LoginComponent,
     TrainingDialogComponent,
+    QuotaDialogComponent
   ],
   imports: [
     BrowserModule,

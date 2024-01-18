@@ -2,18 +2,26 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { QuotaDashboardService } from './quota-dashboard.service';
 import CircleProgress from 'js-circle-progress';
 import { Invoice, UserDto , City} from 'src/app/domain/user.dto';
+import { MatDialog } from '@angular/material/dialog';
+import { QuotaDialogComponent } from './quota-dialog/quota-dialog.component';
 
 @Component({
   selector: 'app-quota-dashbaord',
   templateUrl: './quota-dashbaord.component.html',
   styleUrls: ['./quota-dashbaord.component.scss'],
 })
+
+
 export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
 
   user: UserDto = new UserDto;
-  
-  constructor(private service: QuotaDashboardService) {
-    console.log(Math.abs(10))
+
+  constructor(private service: QuotaDashboardService,
+    private dialog: MatDialog) {
+  }
+
+  openDialog(){
+    this.dialog.open(QuotaDialogComponent);
   }
 
   round(numb: number) {
@@ -104,14 +112,15 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit(): void {
-    this.service.getData().subscribe((data: UserDto)=>{
+    this.user = getUser();
+    /*this.service.getData().subscribe((data: UserDto)=>{
         console.log(data)
         console.log(data.age)
         console.log( getUser());
         this.user = data;
-        //this.user = getUser();
+        
         console.log(this.user);
-    })
+    })*/
   }
 
   ngAfterViewInit(): void {
@@ -137,7 +146,7 @@ function getUser() {
     user.age = 40;
     user.birthdate = "01/01/2001";
     user.familyQuota = 2;
-    user.personalQuota = 1;
+    user.personalQuota = 100;
     user.familyMembers = [
       fam,fam,fam,fam,fam,fam,fam
     ];

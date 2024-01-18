@@ -1,13 +1,13 @@
 <div class="container">
     <div class="sidebar">
         <ul>
-            <li (click)="switchMenuItem('dashboard', 0)" [ngClass]="itemSelected === 0 ? 'selectedItem' : ''">
-                <mat-icon>dashboard</mat-icon>
+            <li (click)="switchMenuItem('dashboard')" [ngClass]="selectedPage === 'dashboard' ? 'selectedItem' : ''">
+                <mat-icon>account_circle</mat-icon>
             </li>
-            <li (click)="switchMenuItem('training', 1)" [ngClass]="itemSelected === 1 ? 'selectedItem' : ''">
-                <mat-icon>school</mat-icon>
+            <li (click)="switchMenuItem('training')" [ngClass]="selectedPage === 'training' ? 'selectedItem' : ''">
+                <mat-icon>bookmark</mat-icon>
             </li>
-            <li (click)="switchMenuItem('barter', 2)" [ngClass]="itemSelected === 2 ? 'selectedItem' : ''">
+            <li (click)="switchMenuItem('barter')" [ngClass]="selectedPage === 'barter' ? 'selectedItem' : ''">
                 <mat-icon>store</mat-icon>
             </li>
         </ul>
@@ -19,31 +19,3 @@
     </div>
 </div>
   
-
-<!-- <div class="container">
-    <div id="drawer">
-        <div id="menu">
-            <div class="menu-item menu-item__dashboard" (click)="this.switchMenuItem('dashboard')"></div>
-            <div class="menu-item" (click)="this.switchMenuItem('training')">
-                <img
-                src="../../assets/resources/book-bookmark.svg"
-                alt="triangle with all three sides equal"
-                height="30"
-                width="30" />
-            </div>
-            <div class="menu-item" (click)="this.switchMenuItem('barter')">
-                <img
-                src="../../assets/resources/store-alt.svg"
-                alt="triangle with all three sides equal"
-                height="30"
-                width="30" />
-            </div>
-        </div>
-        <div class="menu-item" (click)="this.authService.logout()">
-            logout
-        </div>
-    </div>
-    <div id="content">
-        <router-outlet></router-outlet>
-    </div>
-</div> -->

@@ -39,3 +39,14 @@ export class Invoice {
     this.quota = quota;
   }
 }
+
+
+export class Action {
+  label: string;
+  quota: number;
+
+  constructor(label: string, quota: number) {
+    this.label = label;
+    this.quota = quota;
+  }
+}
