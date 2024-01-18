@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,9 @@ import { BarterService } from './menu/barter/barter.service';
 import { TrainingService } from './menu/training/training.service';
 import { AuthService } from 'src/services/auth.service';
 import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.service';
+import CircleProgress from 'js-circle-progress';
+import { createCustomElement } from '@angular/elements';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,7 @@ import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.se
     QuotaDashbaordComponent,
     BarterComponent,
     TrainingComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,14 @@ import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.se
     MatGridListModule,
     FlexLayoutModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [httpInterceptorProviders, AuthService, MainService, LoginService, BarterService, QuotaDashboardService, TrainingService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  /*
+  constructor(private injector: Injector) {
+    customElements.define('circle-progress-quota', CircleProgress);
+  }
+  ngDoBootstrap() {}*/
+}
