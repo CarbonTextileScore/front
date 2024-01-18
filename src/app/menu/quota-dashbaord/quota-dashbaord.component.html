@@ -18,7 +18,7 @@
             <div class="user-tags">{{user.getChildrenTileText()}}</div>
         </div>
 
-        <div class="user-alert" *ngIf="user.isFamilyNumberQuotaReached()">
+        <div class="user-alert" *ngIf="user.userQuota! < 90 && user.isFamilyNumberQuotaReached()">
             Un membre de votre famille va bientôt atteindre son quota maximal. Une fois atteint, une action sera nécessaire pour regagner des points.
         </div>
         <div class="user-alert" *ngIf="user.userQuota! >= 90">
@@ -30,10 +30,10 @@
 
     <div class="tile tile--squared content-padding">
         <h1>Quota personnel</h1>
-        <circle-progress class="quota--big" text-format="percent" [value]=user.userQuota max="100"></circle-progress>
+        <circle-progress [class]=user.userQuotaStatus() animation-duration="2000" class="quota--big" text-format="percent" [value]=user.userQuota max="100"></circle-progress>
         <div class="quota__text--big">{{user.userQuota}}</div>
-        <div class="quota__overloaded" *ngIf="user.userQuota! >= 100">
-            Attention, Vous avez dépassé votre quota. Vous devez résoudre ce problème sous 15 jours
+        <div class="quota__overloaded" *ngIf="user.userQuota! > 99">
+            Attention,<br/>Vous avez dépassé<br/>votre quota. Vous devez<br/>résoudre ce problème<br/>sous 15 jours
             <div class="quota__overloaded__button">Résoudre</div>
         </div>
         <p class="quota--reset">Réinitialisé le 31/12/2058</p>
@@ -43,7 +43,7 @@
     <div class="tile tile--doublesquared">
         <div class="tile--squared content-padding">
             <h1>Quota famillial</h1>
-            <circle-progress class="quota--big" text-format="percent" [value]=user.familyQuota max="100"></circle-progress>
+            <circle-progress [class]=user.familyQuotaStatus()  animation-duration="3000"  class="quota--big" text-format="percent" [value]=user.familyQuota max="100"></circle-progress>
             <div class="quota__text--big">{{user.familyQuota}}</div>
         </div>
         <div class="separator"></div>
@@ -55,7 +55,7 @@
                         src="https://img.freepik.com/photos-gratuite/portrait-homme-blanc-isole_53876-40306.jpg"
                         alt="user picture"/>
                     <div class="quota--small">
-                        <circle-progress class="quota__indicator--small" text-format="percent" [value]=fam.userQuota max="100"></circle-progress>
+                        <circle-progress animation-duration="3000"  class="quota__indicator--small" text-format="percent" [value]=fam.userQuota max="100"></circle-progress>
                         <div class="quota__text--small">{{fam.userQuota}}</div>
                     </div>
                     <div class="family__info">
@@ -91,7 +91,7 @@
     <div class="tile tile--doublesquared">
         <div class="tile--squared content-padding">
             <h1>Quota de la ville</h1>
-            <circle-progress class="quota--big" text-format="percent" [value]=user.city?.quota max="100"></circle-progress>
+            <circle-progress [class]=user.cityQuotaStatus()  animation-duration="3000"  class="quota--big" text-format="percent" [value]=user.city?.quota max="100"></circle-progress>
             <div class="quota__text--big">{{user.city?.quota}}</div>
         </div>
         <div class="separator"></div>
@@ -106,6 +106,9 @@
                     {{sanction}}
                 </div>
             </div>
+        </div>
+        <div class="city__alert-tile" *ngIf="user.city?.punishments?.length! > 0">
+            Votre ville a atteint un certain quota tel que des restrictions ont été imposées aux habitants.
         </div>
     </div>
 

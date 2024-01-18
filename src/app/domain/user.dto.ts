@@ -46,6 +46,36 @@ export class UserDto {
     }
   }
 
+  userQuotaStatus() {
+    if(this.userQuota! > 65) {
+      return "quota--high"
+    } else if(this.userQuota! > 35) {
+      return "quota--medium";
+    } else {
+      return "quota--low";
+    }
+  }
+
+  familyQuotaStatus() {
+    if(this.familyQuota! > 65) {
+      return "quota--high"
+    } else if(this.familyQuota! > 35) {
+      return "quota--medium";
+    } else {
+      return "quota--low";
+    }
+  }
+
+  cityQuotaStatus() {
+    if(this.city?.quota! > 65) {
+      return "quota--high"
+    } else if(this.city?.quota! > 35) {
+      return "quota--medium";
+    } else {
+      return "quota--low";
+    }
+  }
+
   
 
 }
