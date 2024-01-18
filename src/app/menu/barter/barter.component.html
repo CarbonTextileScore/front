@@ -9,13 +9,11 @@
 
     <div *ngFor="let item of marketItems">    
         <div class="subContainer">
-            <a href="{{ item.link }}">
-                <img class="sale-image" src="{{ item.imageLink }}" alt="Marketplace image">
-                <p class="card-price">{{ item.price }}€</p>
-                <h3 class="card-title">{{ item.title }}</h3>
-                <p class="card-city">{{ item.city }}</p>
-                <p class="card-description">{{ item.description }}</p>
-            </a>
+            <img class="sale-image" src={{picture}} alt="Marketplace image">
+            <p class="card-price">{{ item.price }}€</p>
+            <h3 class="card-title">{{ item.name }}</h3>
+            <p class="card-city">{{ item.countryName }}</p>
+            <p class="card-description">{{ item.description }}</p>
         </div>
     </div>
     

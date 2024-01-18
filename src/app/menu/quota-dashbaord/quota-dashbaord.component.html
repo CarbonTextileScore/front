@@ -15,13 +15,13 @@
 
             <div class="user-tags">{{user.birthdate}}</div>
             <div class="user-tags">{{user.gender}}</div>
-            <div class="user-tags">{{user.getChildrenTileText()}}</div>
+            <div class="user-tags">{{getChildrenTileText()}}</div>
         </div>
 
-        <div class="user-alert" *ngIf="user.isFamilyNumberQuotaReached()">
+        <div class="user-alert" *ngIf="user.personalQuota! < 90 && isFamilyNumberQuotaReached()">
             Un membre de votre famille va bientôt atteindre son quota maximal. Une fois atteint, une action sera nécessaire pour regagner des points.
         </div>
-        <div class="user-alert" *ngIf="user.userQuota! >= 90">
+        <div class="user-alert" *ngIf="user.personalQuota! >= 90">
             Vous allez bientôt atteindre votre quota maximal. Une fois atteint, une action sera nécessaire pour regagner des points.
         </div>
         
@@ -30,10 +30,10 @@
 
     <div class="tile tile--squared content-padding">
         <h1>Quota personnel</h1>
-        <circle-progress class="quota--big" text-format="percent" [value]=user.userQuota max="100"></circle-progress>
-        <div class="quota__text--big">{{user.userQuota}}</div>
-        <div class="quota__overloaded" *ngIf="user.userQuota! >= 100">
-            Attention, Vous avez dépassé votre quota. Vous devez résoudre ce problème sous 15 jours
+        <circle-progress [class]=personalQuotaStatus(user) animation-duration="2000" class="quota--big" text-format="percent" [value]=user.personalQuota max="100"></circle-progress>
+        <div class="quota__text--big">{{round(user.personalQuota!)}}</div>
+        <div class="quota__overloaded" *ngIf="user.personalQuota! > 99">
+            Attention,<br/>Vous avez dépassé<br/>votre quota. Vous devez<br/>résoudre ce problème<br/>sous 15 jours
             <div class="quota__overloaded__button">Résoudre</div>
         </div>
         <p class="quota--reset">Réinitialisé le 31/12/2058</p>
@@ -43,25 +43,25 @@
     <div class="tile tile--doublesquared">
         <div class="tile--squared content-padding">
             <h1>Quota famillial</h1>
-            <circle-progress class="quota--big" text-format="percent" [value]=user.familyQuota max="100"></circle-progress>
-            <div class="quota__text--big">{{user.familyQuota}}</div>
+            <circle-progress [class]=familyQuotaStatus(user)  animation-duration="3000"  class="quota--big" text-format="percent" [value]=user.familyQuota max="100"></circle-progress>
+            <div class="quota__text--big">{{round(user.familyQuota!)}}</div>
         </div>
         <div class="separator"></div>
         <div class="tile--squared content-padding">
             <div class="family-list">
 
-                <div class="family-item" *ngFor="let fam of user.family">
+                <div class="family-item" *ngFor="let fam of user.familyMembers">
                     <img class="family__picture"
                         src="https://img.freepik.com/photos-gratuite/portrait-homme-blanc-isole_53876-40306.jpg"
                         alt="user picture"/>
                     <div class="quota--small">
-                        <circle-progress class="quota__indicator--small" text-format="percent" [value]=fam.userQuota max="100"></circle-progress>
-                        <div class="quota__text--small">{{fam.userQuota}}</div>
+                        <circle-progress [class]=personalQuotaStatus(fam) animation-duration="3000"  class="quota__indicator--small" text-format="percent" [value]=fam.personalQuota max="100"></circle-progress>
+                        <div class="quota__text--small">{{round(fam.personalQuota!)}}</div>
                     </div>
                     <div class="family__info">
                         <div class="family__info__name">{{fam.name}}</div>
                         <div class="family__info__tags">
-                            <div class="family__info__tagitem">{{fam.familyStatus()}}</div>
+                            <div class="family__info__tagitem">{{familyStatus(fam)}}</div>
                             <div class="family__info__tagitem">{{fam.gender}}</div>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
         <h1>Dernières actions</h1>
         <div class="tile--transaction">
             <div class="transaction-line" *ngFor="let inv of user.invoices">
-                <div class="transac__title">{{inv.label}}</div>
+                <div class="transac__title">{{inv.productQualifier}}</div>
                 <div class="transac__date">{{inv.date}}</div>
                 <div class="transac__montant">{{inv.productPrice}}€</div>
-                <div [class]=inv.quotaColor()>{{inv.quotaFormatted()}}cc</div>
+                <div [class]=quotaColor(inv)>{{quotaFormatted(inv)}}cc</div>
             </div>
             
         </div>
@@ -91,8 +91,8 @@
     <div class="tile tile--doublesquared">
         <div class="tile--squared content-padding">
             <h1>Quota de la ville</h1>
-            <circle-progress class="quota--big" text-format="percent" [value]=user.city?.quota max="100"></circle-progress>
-            <div class="quota__text--big">{{user.city?.quota}}</div>
+            <circle-progress [class]=cityQuotaStatus(user)  animation-duration="3000"  class="quota--big" text-format="percent" [value]=user.city?.quota max="100"></circle-progress>
+            <div class="quota__text--big">{{round(user.city?.quota!)}}</div>
         </div>
         <div class="separator"></div>
         <div class="tile--squared content-padding">
@@ -106,6 +106,9 @@
                     {{sanction}}
                 </div>
             </div>
+        </div>
+        <div class="city__alert-tile" *ngIf="user.city?.punishments?.length! > 0">
+            Votre ville a atteint un certain quota tel que des restrictions ont été imposées aux habitants.
         </div>
     </div>
 

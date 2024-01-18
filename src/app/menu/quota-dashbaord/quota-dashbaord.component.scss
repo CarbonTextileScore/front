@@ -10,6 +10,34 @@
     justify-content: center;
 }
 
+.quota__overloaded {
+    z-index: 100;
+    margin-top: 20px;
+    font-weight: 700;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    background-color: #F85D5D;
+    color: #6D0505;
+    border-radius: 100%;
+    height: 110px;
+    width: 120px;
+}
+
+.quota__overloaded__button {
+    position: relative;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    padding: 2px 5px;
+    width: fit-content;
+    background-color: #6D0505;
+    color: #F85D5D;
+}
+
+
 .quota__text--big {
     font-size: 50px;
     font-weight: 900;
@@ -33,7 +61,6 @@
 
 .quota--big::part(value) {
 	stroke-width: 10px;
-	stroke: white;
 	stroke-linecap: round;
 }
 
@@ -70,6 +97,18 @@ circle-progress::part(text) {
     font-weight: 300;
 }
 
+.city__alert-tile {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    left: 10px;
+    background-color: #F85D5D;
+    border-radius: 5px;
+    color:#6D0505;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 5px;
+}
 
 .quota--small circle-progress {
     position: absolute;
@@ -89,7 +128,16 @@ circle-progress::part(text) {
 	stroke: #545454;
 }
 
+.quota--high::part(value) {
+    stroke: #F85D5D !important;
+}
 
+.quota--low::part(value) {
+    stroke: #59FF7C !important;
+}
+.quota--medium::part(value) {
+    stroke: #E8EC3B !important;
+}
 
 
 .tile--squared {
@@ -218,7 +266,9 @@ circle-progress::part(text) {
 
 // user transac
 .tile--transaction {
-    overflow:scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
     width: 100%;
     margin-top: 50px;
     display: flex;
@@ -286,7 +336,8 @@ circle-progress::part(text) {
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
     justify-content: flex-start;
 }
 
@@ -359,7 +410,8 @@ circle-progress::part(text) {
     display: flex;
     flex-direction: column;
     align-items: start;
-    overflow: scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
 
 }
 

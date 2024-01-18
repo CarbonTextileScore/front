@@ -7,27 +7,17 @@
 
 #drawer{
     position: fixed;
-    top: 50%;
-    height: 70%;
-    width: 70px;
-    background-color: #2B2D31;
-    margin: 20px 15px;
-    border-radius: 15px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    left: 0;
-    transform: translateY(-50%);
-}
-
-#menu{
-    position: fixed;
     left: 20px;
     top: 50%;
     transform: translateY(calc(-50% - 20px));
     height: 70%;
     width: 70px;
+
+    background-color: #2B2D31;
+    margin: 20px 15px;
+    border-radius: 15px;
+    border: 1px solid black;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,6 +27,20 @@
     left: 0;
     transform: translateY(-50%);
 }
+
+.menu-item {
+    width: 50px !important;
+    height: 30px !important;
+    background-color: red;
+}
+
+.menu-item__dashboard {
+
+    -webkit-mask-image: url("../../assets/resources/circle-user.svg");
+    mask-image: url("../../assets/resources/circle-user.svg");
+}
+
+
 
 @media (max-aspect-ratio: 4/5){
     .container{
@@ -64,8 +68,6 @@
 .menu-item{
     margin: 20px 10px;
     text-align: center;
-    height: fit-content;
-    width: auto;
 }
 
 mat-icon{
