@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
@@ -7,8 +7,9 @@ import { jwtDecode } from "jwt-decode";
 import { JWTToken } from "src/models/JWTToken.model";
 import { AuthModel } from "src/models/Auth.model";
 import { throwError } from "rxjs";
+import {AuthorityDto} from "../app/domain/authority.dto";
 
-const API_URL= environment.API_URL + "api/";
+const API_URL= environment.API_URL;
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,11 @@ export class AuthService {
 		private mainService: MainService,
 	) {}
 
-	login(mail: string, password: string) {
-		return this.http.post(API_URL+'login/', JSON.stringify({'email':mail, 'password':password})).subscribe({
-			next: data => {
-				this.mainService.setAuth(<AuthModel>jwtDecode(JSON.stringify(<JWTToken>data)));
-				this.mainService.setToken(<JWTToken>data)
+	login(dto: AuthorityDto) {
+		return this.http.post<AuthorityDto>(API_URL+'login/', dto, {observe: 'response'}).subscribe({
+			next: (data: HttpResponse<any>)  => {
+				this.mainService.setAuth(<AuthModel>jwtDecode(JSON.stringify(<JWTToken>{access: data.headers.get('Token')})));
+				this.mainService.setToken(<JWTToken>{access: data.headers.get('Token')})
 				this.setRefreshTokenTimeout(this.mainService.getAuth().exp * 1000);
 				this.router.navigate(["/home/dashboard"]);
 			}

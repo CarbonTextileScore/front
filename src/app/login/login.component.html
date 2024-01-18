@@ -7,9 +7,8 @@
 
 	<mat-form-field>
 		<mat-label>Enter your email</mat-label>
-		<input matInput placeholder="bob@example.com" formControlName="email">
-		<mat-error *ngIf="this.authenticationForm.get('email')?.getError('required')">You must enter a value</mat-error>
-		<mat-error *ngIf="this.authenticationForm.get('email')?.getError('email')">Not a valid email</mat-error>
+		<input matInput placeholder="bob@example.com" formControlName="username">
+		<mat-error *ngIf="this.authenticationForm.get('username')?.getError('required')">You must enter a value</mat-error>
 	</mat-form-field>
 
 	<mat-form-field>
