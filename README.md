@@ -27,6 +27,8 @@ npm i ngx-cookie-service
 npm i jwt-decode
 ```
 
+    npm install --save js-circle-progress
+
 ## Project launch
 ```
 ng serve
