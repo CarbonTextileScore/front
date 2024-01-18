@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { TrainingDTO } from '../../domain/training.DTO';
 import { VideoCategoryModel } from 'src/models/VideoCategory.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +17,7 @@ interface FilteredDTO {
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.scss']
 })
-export class TrainingComponent implements OnInit, AfterViewInit {
+export class TrainingComponent implements OnInit, AfterViewChecked {
   
   videoPicture: string = "/assets/resources/video_picture.jpg";
   userPicture: string = "/assets/resources/user_picture.jpg";
@@ -35,7 +35,6 @@ export class TrainingComponent implements OnInit, AfterViewInit {
     public sanitizer: DomSanitizer,
     public router: Router
   ){}
-
 
   ngOnInit(): void {
     this.trainingService.getCategories().subscribe((categories)=>{
@@ -60,7 +59,7 @@ export class TrainingComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked(): void {
     this.scrollContainers.forEach((container, index) => {
       this.checkVisibility(container.nativeElement, index);
     });

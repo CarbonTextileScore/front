@@ -1,17 +1,28 @@
 <div class="container">
-    <div id="drawer">
-
-        <div id="menu">
-            <!-- <div class="menu-item" (click)="this.switchMenuItem('dashboard')">
+    <div class="sidebar">
+        <ul>
+            <li (click)="switchMenuItem('dashboard', 0)" [ngClass]="itemSelected === 0 ? 'selectedItem' : ''">
                 <mat-icon>dashboard</mat-icon>
-            </div>
-            <div class="menu-item" (click)="this.switchMenuItem('training')">
+            </li>
+            <li (click)="switchMenuItem('training', 1)" [ngClass]="itemSelected === 1 ? 'selectedItem' : ''">
                 <mat-icon>school</mat-icon>
-            </div>
-            <div class="menu-item" (click)="this.switchMenuItem('barter')">
+            </li>
+            <li (click)="switchMenuItem('barter', 2)" [ngClass]="itemSelected === 2 ? 'selectedItem' : ''">
                 <mat-icon>store</mat-icon>
-            </div> -->
+            </li>
+        </ul>
+        <button class="logout-button" (click)="this.authService.logout()">Log Out</button>
+    </div>
 
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+  
+
+<!-- <div class="container">
+    <div id="drawer">
+        <div id="menu">
             <div class="menu-item menu-item__dashboard" (click)="this.switchMenuItem('dashboard')"></div>
             <div class="menu-item" (click)="this.switchMenuItem('training')">
                 <img
@@ -27,18 +38,12 @@
                 height="30"
                 width="30" />
             </div>
-
         </div>
-
-
-
         <div class="menu-item" (click)="this.authService.logout()">
             logout
         </div>
-
     </div>
-
     <div id="content">
         <router-outlet></router-outlet>
     </div>
-</div>
+</div> -->

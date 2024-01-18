@@ -1,20 +1,24 @@
-<h1 class="pageTitle">Marketplace</h1>
+<div class="container">
 
-<div class="search-bar">
-    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="search()" placeholder="Rechercher">
-</div>
-
-
-<div class="container" fxLayout="row wrap" fxLayoutAlign="center stretch">
-
-    <div *ngFor="let item of marketItems">    
-        <div class="subContainer">
-            <img class="sale-image" src={{picture}} alt="Marketplace image">
-            <p class="card-price">{{ item.price }}€</p>
-            <h3 class="card-title">{{ item.name }}</h3>
-            <p class="card-city">{{ item.countryName }}</p>
-            <p class="card-description">{{ item.description }}</p>
-        </div>
+    <h1>Marketplace</h1>
+    
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="search()" placeholder="Rechercher">
     </div>
     
+    
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="center stretch">
+    
+        <div *ngFor="let item of marketItems">    
+            <div class="subContainer">
+                <img class="sale-image" src={{picture}} alt="Marketplace image">
+                <p class="card-price">{{ item.price }}€</p>
+                <h3 class="card-title">{{ item.name }}</h3>
+                <p class="card-city">{{ item.countryName }}</p>
+                <p class="card-description">{{ item.description }}</p>
+            </div>
+        </div>
+        
+    </div>
+
 </div>

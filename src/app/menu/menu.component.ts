@@ -9,12 +9,15 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class MenuComponent {
 
+  itemSelected: number = 0;
+
   constructor(
     public router: Router,
     public authService: AuthService
   ){ }
 
-  switchMenuItem(url: string){
+  switchMenuItem(url: string, item: number){
+    this.itemSelected = item;
     this.router.navigate(['./home/' + url]);
   }
 
