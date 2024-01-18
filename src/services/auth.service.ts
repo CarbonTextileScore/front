@@ -25,14 +25,14 @@ export class AuthService {
 	) {}
 
 	login(dto: AuthorityDto) {
-		return this.http.post<AuthorityDto>(API_URL+'login/', dto, {observe: 'response'}).subscribe({
+		return this.http.post<AuthorityDto>(API_URL+'login', dto, {observe: 'response'}).subscribe({
 			next: (data: HttpResponse<any>)  => {
 				this.mainService.setAuth(<AuthModel>jwtDecode(JSON.stringify(<JWTToken>{access: data.headers.get('Token')})));
 				this.mainService.setToken(<JWTToken>{access: data.headers.get('Token')})
 				this.setRefreshTokenTimeout(this.mainService.getAuth().exp * 1000);
 				this.router.navigate(["/home/dashboard"]);
 			}
-		});;
+		});
 	}
 
 	setRefreshTokenTimeout(expirationTime: number) {

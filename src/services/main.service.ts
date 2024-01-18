@@ -40,8 +40,7 @@ export class MainService {
   }
 
 	isLoggedIn(): boolean {
-    // return this.cookieService.check(this.TOKEN_KEY);
-		return false;
+    return this.cookieService.check(this.TOKEN_KEY);
   }
 
 }
