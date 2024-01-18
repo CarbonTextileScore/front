@@ -1,4 +1,4 @@
-export class Invoice{
+export class InvoiceDto{
 
     id: number;
     date: Date;

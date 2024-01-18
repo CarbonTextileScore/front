@@ -34,7 +34,6 @@ import { QuotaDashboardService } from './menu/quota-dashbaord/quota-dashboard.se
 import CircleProgress from 'js-circle-progress';
 import { createCustomElement } from '@angular/elements';
 import { TrainingDialogComponent } from './menu/training/training-dialog/training-dialog.component';
-import {httpInterceptorProviders} from 'src/services/http-request-interceptor'
 
 
 @NgModule({
@@ -72,9 +71,8 @@ import {httpInterceptorProviders} from 'src/services/http-request-interceptor'
     FlexLayoutModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  //providers: [AuthService, MainService, LoginService, BarterService, QuotaDashboardService, TrainingService],
 
-  providers: [httpInterceptorProviders, AuthService, MainService, LoginService, BarterService, QuotaDashboardService, TrainingService],
+  providers: [AuthService, MainService, LoginService, BarterService, QuotaDashboardService, TrainingService],
 
   bootstrap: [AppComponent]
 })
