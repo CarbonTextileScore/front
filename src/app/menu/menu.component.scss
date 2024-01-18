@@ -30,6 +30,8 @@
 .menu-item{
     margin: 20px 10px;
     text-align: center;
+    height: fit-content;
+    width: auto;
 }
 
 mat-icon{
@@ -37,4 +39,15 @@ mat-icon{
     height: auto;
     width: auto;
     color: #C0C0C0;
+}
+
+.menu-item:hover {
+    background-color: #c0c0c077;
+    border-radius: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.menu-item:hover>mat-icon {
+    color: #2B2D31;
 }
