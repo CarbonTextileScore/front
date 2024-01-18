@@ -8,12 +8,13 @@ import { Invoice, UserDto , City} from 'src/app/domain/user.dto';
   templateUrl: './quota-dashbaord.component.html',
   styleUrls: ['./quota-dashbaord.component.scss'],
 })
+
+
 export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
 
   user: UserDto = new UserDto;
-  
+
   constructor(private service: QuotaDashboardService) {
-    console.log(Math.abs(10))
   }
 
   round(numb: number) {
@@ -104,14 +105,15 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit(): void {
-    this.service.getData().subscribe((data: UserDto)=>{
+    this.user = getUser();
+    /*this.service.getData().subscribe((data: UserDto)=>{
         console.log(data)
         console.log(data.age)
         console.log( getUser());
         this.user = data;
-        //this.user = getUser();
+        
         console.log(this.user);
-    })
+    })*/
   }
 
   ngAfterViewInit(): void {

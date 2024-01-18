@@ -12,8 +12,16 @@ export class MenuComponent {
     public router: Router
   ){ }
 
-  switchMenuItem(url: string){
+  switchMenuItem(url: string, id: string){
     this.router.navigate(['./home/' + url]);
+
+   
+      var items: HTMLCollectionOf<Element> = document.getElementsByClassName("menu-item");
+      for(var i = 0 ; i<items.length ; i++) {
+        items.item(i)?.classList.remove("selected");
+      }
+      document.getElementById(id)?.classList.add("selected");
+    
   }
 
 }

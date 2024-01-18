@@ -18,6 +18,7 @@ interface FilteredDTO {
 })
 export class TrainingComponent implements OnInit, AfterViewInit {
 
+  
   // Fausses données pour tester sans API
 
   videoCategories: VideoCategoryModel[] = [
@@ -51,7 +52,8 @@ export class TrainingComponent implements OnInit, AfterViewInit {
   constructor(
     private trainingService: TrainingService,
     private dialog: MatDialog
-    ){}
+    ){
+    }
 
 
   ngOnInit(): void {

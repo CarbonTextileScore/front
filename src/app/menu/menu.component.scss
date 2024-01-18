@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     position: fixed;
     top: 50%;
     left: 0;
@@ -30,14 +30,26 @@
 
 .menu-item {
     width: 50px !important;
-    height: 30px !important;
-    background-color: red;
+    height: 50px !important;
+    margin: 20px 0;
+    border-radius: 15px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 600ms;
 }
 
-.menu-item__dashboard {
+.menu-item:hover {
+    cursor: pointer;
+}
 
-    -webkit-mask-image: url("../../assets/resources/circle-user.svg");
-    mask-image: url("../../assets/resources/circle-user.svg");
+.menu-item:hover>mat-icon {
+    color: #2B2D31;
+}
+.menu-item.selected {
+    background-color: white;
+    transition-duration: 200ms;
 }
 
 
@@ -65,25 +77,3 @@
     width: 92%;
 }
 
-.menu-item{
-    margin: 20px 10px;
-    text-align: center;
-}
-
-mat-icon{
-    font-size: 40px;
-    height: auto;
-    width: auto;
-    color: #C0C0C0;
-}
-
-.menu-item:hover {
-    background-color: #c0c0c077;
-    border-radius: 15px;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.menu-item:hover>mat-icon {
-    color: #2B2D31;
-}
