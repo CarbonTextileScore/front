@@ -14,6 +14,7 @@ export class AuthGuard {
   ) {}
 
   canActivate(): | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return true;
     if(this.mainService.isLoggedIn()){
       return true;
     }

@@ -34,3 +34,8 @@ app-root, app-login, app-sign-in, app-menu{
     margin: 10px;
 }
 }
+
+.mat-mdc-dialog-surface.mdc-dialog__surface{
+    background-color: #3C3C3C !important;
+    color: #C0C0C0 !important;
+}
