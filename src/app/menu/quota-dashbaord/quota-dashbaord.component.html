@@ -1,28 +1,121 @@
-<div class="container" fxLayout="row wrap" fxLayoutAlign="center stretch">
+<div class="container" fxLayout="row wrap">
 
-    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between stretch">
-        <div class="subContainer" fxFlex="32.5">
-            <p>quota-dashbaord works!</p>
+
+    <div class="tile--user content-padding" id="user-info">
+        <img
+            id="user-picture"
+            src="https://img.freepik.com/photos-gratuite/portrait-homme-blanc-isole_53876-40306.jpg"
+            alt="user picture" />
+
+        <div id="user-name">
+            <h1 id="user-lastname">{{user.name}}</h1>
+            <h1 id="user-firstname">{{user.lastname}}</h1>
+
+            <!--<div class="user-tags" *ngFor="let item of list">{{item}}</div>-->
+
+            <div class="user-tags">{{user.birthdate}}</div>
+            <div class="user-tags">{{user.gender}}</div>
+            <div class="user-tags">{{user.getChildrenTileText()}}</div>
         </div>
-    
-        <div class="subContainer" fxFlex="22.5">
-            <p>quota-dashbaord works!</p>
+
+        <div class="user-alert" *ngIf="user.isFamilyNumberQuotaReached()">
+            Un membre de votre famille va bientôt atteindre son quota maximal. Une fois atteint, une action sera nécessaire pour regagner des points.
         </div>
-    
-        <div class="subContainer" fxFlex="40">
-            <p>quota-dashbaord works!</p>
+        <div class="user-alert" *ngIf="user.userQuota! >= 90">
+            Vous allez bientôt atteindre votre quota maximal. Une fois atteint, une action sera nécessaire pour regagner des points.
+        </div>
+        
+    </div>
+
+
+    <div class="tile tile--squared content-padding">
+        <h1>Quota personnel</h1>
+        <circle-progress class="quota--big" text-format="percent" [value]=user.userQuota max="100"></circle-progress>
+        <div class="quota__text--big">{{user.userQuota}}</div>
+        <div class="quota__overloaded" *ngIf="user.userQuota! >= 100">
+            Attention, Vous avez dépassé votre quota. Vous devez résoudre ce problème sous 15 jours
+            <div class="quota__overloaded__button">Résoudre</div>
+        </div>
+        <p class="quota--reset">Réinitialisé le 31/12/2058</p>
+    </div>
+
+
+    <div class="tile tile--doublesquared">
+        <div class="tile--squared content-padding">
+            <h1>Quota famillial</h1>
+            <circle-progress class="quota--big" text-format="percent" [value]=user.familyQuota max="100"></circle-progress>
+            <div class="quota__text--big">{{user.familyQuota}}</div>
+        </div>
+        <div class="separator"></div>
+        <div class="tile--squared content-padding">
+            <div class="family-list">
+
+                <div class="family-item" *ngFor="let fam of user.family">
+                    <img class="family__picture"
+                        src="https://img.freepik.com/photos-gratuite/portrait-homme-blanc-isole_53876-40306.jpg"
+                        alt="user picture"/>
+                    <div class="quota--small">
+                        <circle-progress class="quota__indicator--small" text-format="percent" [value]=fam.userQuota max="100"></circle-progress>
+                        <div class="quota__text--small">{{fam.userQuota}}</div>
+                    </div>
+                    <div class="family__info">
+                        <div class="family__info__name">{{fam.name}}</div>
+                        <div class="family__info__tags">
+                            <div class="family__info__tagitem">{{fam.familyStatus()}}</div>
+                            <div class="family__info__tagitem">{{fam.gender}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
-    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between stretch">
-        <div class="subContainer" fxFlex="47.5">
-            <p>quota-dashbaord works!</p>
+
+    <div class="tile tile--doublesquared">
+        <h1>Dernières actions</h1>
+        <div class="tile--transaction">
+            <div class="transaction-line" *ngFor="let inv of user.invoices">
+                <div class="transac__title">{{inv.label}}</div>
+                <div class="transac__date">{{inv.date}}</div>
+                <div class="transac__montant">{{inv.productPrice}}€</div>
+                <div [class]=inv.quotaColor()>{{inv.quotaFormatted()}}cc</div>
+            </div>
+            
         </div>
-    
-        <div class="subContainer" fxFlex="47.5">
-            <p>quota-dashbaord works!</p>
+        
+        
+    </div>
+
+
+    <div class="tile tile--doublesquared">
+        <div class="tile--squared content-padding">
+            <h1>Quota de la ville</h1>
+            <circle-progress class="quota--big" text-format="percent" [value]=user.city?.quota max="100"></circle-progress>
+            <div class="quota__text--big">{{user.city?.quota}}</div>
+        </div>
+        <div class="separator"></div>
+        <div class="tile--squared content-padding">
+            <div class="sanction__tile">
+                <h2 class="sanction__title" *ngIf="user.city?.punishments?.length != 0">Sanctions appliquées</h2>
+                <div class="sanction__item" *ngFor="let sanction of user.city?.punishments">
+                    {{sanction}}
+                </div>
+                <h2 class="sanction__title" *ngIf="user.city?.punishmentsSoon?.length != 0">Sanctions à venir</h2>
+                <div class="sanction__item" *ngFor="let sanction of user.city?.punishmentsSoon">
+                    {{sanction}}
+                </div>
+            </div>
         </div>
     </div>
 
+
+    <!--<div *ngFor="" (click)="">
+        
+    </div>-->
+    
+    
+    
+    
 </div>
 
