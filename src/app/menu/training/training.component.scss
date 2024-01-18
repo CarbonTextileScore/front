@@ -1,0 +1,93 @@
+.container{
+    width: 100%;
+    padding: 20px;
+}
+
+#video-picture{
+    max-width: 100%;
+}
+
+h2{
+    font-size: 22px;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0;
+}
+
+#category{
+    margin: 25px 0px 10px 0px;
+}
+
+#category-scroll{
+    position: relative;
+}
+
+#item{
+    min-width: 25%;
+    max-width: 25%;
+    background-color: #2B2D31;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid black;
+}
+
+#data{
+    padding: 0 7px 7px 7px;
+}
+
+#data>div>div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#user-picture{
+    border-radius: 30px;
+}
+
+#username{
+    font-style: italic;
+    font-size: 12px;
+}
+
+#score{
+    font-size: 12px;
+}
+
+#items-scroll {
+    overflow-x: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    width: 60px;
+    height: 100%;
+}
+
+.btn-left{
+    left: 0;
+}
+
+.btn-right{
+    right:0;
+}
+
+button span {
+    margin: 0 5px;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}

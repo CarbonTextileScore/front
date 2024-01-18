@@ -1,6 +1,9 @@
 .container{
     height: 100%;
     padding-left: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 #drawer{
@@ -20,6 +23,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
 }
 
 @media (max-aspect-ratio: 4/5){
@@ -42,7 +49,7 @@
 
 #content{
     height: 100%;
-    width: 100%;
+    width: 92%;
 }
 
 .menu-item{

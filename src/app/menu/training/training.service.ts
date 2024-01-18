@@ -8,5 +8,4 @@ export class TrainingService {
         private httpClient: HttpClient
     ) {}
 
-
 }
