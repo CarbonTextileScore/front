@@ -7,17 +7,27 @@
 
 #drawer{
     position: fixed;
+    top: 50%;
+    height: 70%;
+    width: 70px;
+    background-color: #2B2D31;
+    margin: 20px 15px;
+    border-radius: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+#menu{
+    position: fixed;
     left: 20px;
     top: 50%;
     transform: translateY(calc(-50% - 20px));
     height: 70%;
     width: 70px;
-
-    background-color: #2B2D31;
-    margin: 20px 15px;
-    border-radius: 15px;
-    border: 1px solid black;
-
     display: flex;
     flex-direction: column;
     justify-content: center;

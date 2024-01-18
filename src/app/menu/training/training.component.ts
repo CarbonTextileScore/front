@@ -2,8 +2,9 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, Vie
 import { TrainingDTO } from '../../domain/training.DTO';
 import { VideoCategoryModel } from 'src/models/VideoCategory.model';
 import { MatDialog } from '@angular/material/dialog';
-import { TrainingDialogComponent } from './training-dialog/training-dialog.component';
 import { TrainingService } from './training.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 interface FilteredDTO {
   categoryId: number;
@@ -17,76 +18,46 @@ interface FilteredDTO {
   styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent implements OnInit, AfterViewInit {
+  
+  videoPicture: string = "/assets/resources/video_picture.jpg";
+  userPicture: string = "/assets/resources/user_picture.jpg";
 
-  // Fausses données pour tester sans API
-
-  videoCategories: VideoCategoryModel[] = [
-    new VideoCategoryModel(1, "Créez vos vêtements"),
-    new VideoCategoryModel(2, "Recyclez vos vêtements"),
-    new VideoCategoryModel(3, "Réutilisez vos vêtements")
-  ]
-
-  private videoPicture: string = "/assets/resources/video_picture.jpg";
-  private userPicture: string = "/assets/resources/user_picture.jpg";
-
-  videos: TrainingDTO[] = [
-    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.1, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.2, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.3, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.4, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment faire un T-shirt", this.videoPicture, 1, 4.5, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.1, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment recycler un T-shirt", this.videoPicture, 2, 4.2, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.1, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.2, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.3, "Jade Christien", this.userPicture),
-    new TrainingDTO(1, "Comment réutiliser un T-shirt", this.videoPicture, 3, 4.4, "Jade Christien", this.userPicture),
-  ];
-
-  // Variables
+  categories: VideoCategoryModel[] = [];
+  videos: TrainingDTO[] = [];
   filteredVideoList: FilteredDTO[] = [];
+
   @ViewChildren('scrollContainer') scrollContainers!: QueryList<ElementRef>;
   scrollValue: number = 600;
 
   constructor(
     private trainingService: TrainingService,
-    private dialog: MatDialog
-    ){}
+    private dialog: MatDialog,
+    public sanitizer: DomSanitizer,
+    public router: Router
+  ){}
 
 
   ngOnInit(): void {
+    this.trainingService.getCategories().subscribe((categories)=>{
+      this.categories = categories;
 
-    let categoriesDistinctes = [...new Set(this.videos.map(item => item.categoryId))];
-    categoriesDistinctes.forEach(categoryId => {
-      let category = this.videoCategories.find(category => category.id === categoryId);
-      let categoryName = category ? category.name : "";
-      const filteredVideos: FilteredDTO = {
-        categoryId: categoryId,
-        categoryName: categoryName,
-        videoList: this.videos.filter(item => item.categoryId === categoryId)
-      };
-      this.filteredVideoList.push(filteredVideos)
-    });    
+      this.trainingService.getVideos().subscribe((videos)=>{
+        this.videos = videos;
 
-    // this.trainingService.getCategories().subscribe((categories)=>{
-    //   this.videoCategories = categories;
-    //   this.trainingService.getVideos().subscribe((videos)=>{
-    //     this.videos = videos;
-
-    //     let categoriesDistinctes = [...new Set(this.videos.map(item => item.categoryId))];
-    //     categoriesDistinctes.forEach(categoryId => {
-    //       let category = this.videoCategories.find(category => category.id === categoryId);
-    //       let categoryName = category ? category.name : "";
-    //       const filteredVideos: FilteredDTO = {
-    //         categoryId: categoryId,
-    //         categoryName: categoryName,
-    //         videoList: this.videos.filter(item => item.categoryId === categoryId)
-    //       };
-    //       this.filteredVideoList.push(filteredVideos)
-    //     });    
-
-    //   });
-    // });
+        let categoriesDistinctes = [...new Set(this.videos.map(item => item.categoryId))];
+        categoriesDistinctes.forEach(categoryId => {
+          let category = this.categories.find(category => category.id === categoryId);
+          let categoryName = category ? category.name : "";
+          const filteredVideos: FilteredDTO = {
+            categoryId: categoryId,
+            categoryName: categoryName,
+            videoList: this.videos.filter(item => item.categoryId === categoryId)
+          };
+          this.filteredVideoList.push(filteredVideos)
+        });    
+        
+      });
+    });
   }
 
   ngAfterViewInit() {
@@ -96,10 +67,10 @@ export class TrainingComponent implements OnInit, AfterViewInit {
   }
 
   openMedia(video: TrainingDTO){
-    console.log(1, video);
-    this.dialog.open(TrainingDialogComponent, {
-      data: video,
-    });
+    // console.log(1, video);
+    // this.dialog.open(TrainingDialogComponent, {
+    //   data: video,
+    // });
   }
  
   scroll(index: number, direction: string) {
@@ -119,6 +90,10 @@ export class TrainingComponent implements OnInit, AfterViewInit {
       leftButton.style.display = container.scrollLeft === 0 ? 'none' : 'block';
       rightButton.style.display = container.scrollLeft + container.clientWidth >= container.scrollWidth ? 'none' : 'block';
     }
+  }
+
+  redirectToYouTubeVideo(youtubeUrl: string) {
+    window.open(youtubeUrl, '_blank');
   }
 
 }

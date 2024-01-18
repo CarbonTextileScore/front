@@ -1,8 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 import { MarketItemDTO } from "../../domain/barter.DTO";
 import { environment } from "src/environments/environment.prod";
+import { MainService } from "src/services/main.service";
 
 const apiUrl = environment.API_URL + "api/barter/";
 
@@ -11,14 +12,15 @@ const apiUrl = environment.API_URL + "api/barter/";
 })
 export class BarterService {
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(
+        private httpClient: HttpClient,
+        private mainService: MainService
+        ) {}
 
     getMarketItems(): Observable<MarketItemDTO[]>{
-        return this.httpClient.get<MarketItemDTO[]>(apiUrl+`marketItems`);
+        var headers = new HttpHeaders();
+        headers = headers.set('Token', this.mainService.getToken().access);  
+        return this.httpClient.get<MarketItemDTO[]>(apiUrl+`marketItems`, {headers: headers});
     }
 
-    // getMarketItemsWithKeyword(keyWord:string = ''):Observable<MarketItemDTO[]> {
-    //     const url = this.apiUrl + ''; // Faire l'appel API, on verra comment ça marche
-    //     return this.httpClient.get<MarketItemDTO[]>(url);
-    // }
 }

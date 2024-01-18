@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class MenuComponent {
 
   constructor(
-    public router: Router
+    public router: Router,
+    public authService: AuthService
   ){ }
 
   switchMenuItem(url: string){

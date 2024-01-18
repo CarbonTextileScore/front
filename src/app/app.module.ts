@@ -66,7 +66,7 @@ import { TrainingDialogComponent } from './menu/training/training-dialog/trainin
     MatSidenavModule,
     MatButtonModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

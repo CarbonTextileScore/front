@@ -8,11 +8,12 @@
     <div id="category-scroll">
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" id="items-scroll" #scrollContainer>
 
-        <div *ngFor="let video of categoryVideos.videoList" id="item" (click)="openMedia(video)">
-          <img src={{video.video}} alt="image" id="video-picture"/>
+        <div *ngFor="let video of categoryVideos.videoList" id="item">
+
+          <img src={{videoPicture}} alt="image" id="video-picture" (click)="this.redirectToYouTubeVideo(video.video)"/>
   
-          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" id="data">
-            <img src={{video.userPicture}} alt="image" id="user-picture" fxFlex="20"/>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" id="data" (click)="openMedia(video)">
+            <img src={{this.userPicture}} alt="image" id="user-picture" fxFlex="20"/>
             <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="75">
               <div>{{video.name}}</div>
               <div id="username">{{video.userFullName}}</div>
