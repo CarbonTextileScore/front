@@ -1,1 +1,16 @@
-<p>menu works!</p>
+<div class="container">
+    <div id="drawer">
+        <div class="menu-item" (click)="this.switchMenuItem('dashboard')">
+            <mat-icon>dashboard</mat-icon>
+        </div>
+        <div class="menu-item" (click)="this.switchMenuItem('training')">
+            <mat-icon>school</mat-icon>
+        </div>
+        <div class="menu-item" (click)="this.switchMenuItem('barter')">
+            <mat-icon>store</mat-icon>
+        </div>
+    </div>
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

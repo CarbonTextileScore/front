@@ -1,0 +1,40 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#drawer{
+    height: 70%;
+    width: 7%;
+    background-color: #2B2D31;
+    margin: 20px 10px;
+    border-radius: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+#content{
+    height: 100%;
+    width: 92%;
+}
+
+.menu-item{
+    margin: 20px 10px;
+    text-align: center;
+}
+
+mat-icon{
+    font-size: 40px;
+    height: auto;
+    width: auto;
+    color: #C0C0C0;
+}
