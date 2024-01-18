@@ -28,6 +28,20 @@
     transform: translateY(-50%);
 }
 
+.menu-item {
+    width: 50px !important;
+    height: 30px !important;
+    background-color: red;
+}
+
+.menu-item__dashboard {
+
+    -webkit-mask-image: url("../../assets/resources/circle-user.svg");
+    mask-image: url("../../assets/resources/circle-user.svg");
+}
+
+
+
 @media (max-aspect-ratio: 4/5){
     .container{
         height: 100%;
@@ -54,8 +68,6 @@
 .menu-item{
     margin: 20px 10px;
     text-align: center;
-    height: fit-content;
-    width: auto;
 }
 
 mat-icon{

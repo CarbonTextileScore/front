@@ -1,13 +1,21 @@
 <div class="container">
     <div id="drawer">
-        <div class="menu-item" (click)="this.switchMenuItem('dashboard')">
-            <mat-icon>dashboard</mat-icon>
+        <div class="menu-item menu-item__dashboard" (click)="this.switchMenuItem('dashboard')">
+            
         </div>
         <div class="menu-item" (click)="this.switchMenuItem('training')">
-            <mat-icon>school</mat-icon>
+            <img
+            src="../../assets/resources/book-bookmark.svg"
+            alt="triangle with all three sides equal"
+            height="30"
+            width="30" />
         </div>
         <div class="menu-item" (click)="this.switchMenuItem('barter')">
-            <mat-icon>store</mat-icon>
+            <img
+            src="../../assets/resources/store-alt.svg"
+            alt="triangle with all three sides equal"
+            height="30"
+            width="30" />
         </div>
     </div>
     <div id="content">

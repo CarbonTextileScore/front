@@ -266,7 +266,9 @@ circle-progress::part(text) {
 
 // user transac
 .tile--transaction {
-    overflow:scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
     width: 100%;
     margin-top: 50px;
     display: flex;
@@ -334,7 +336,8 @@ circle-progress::part(text) {
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
     justify-content: flex-start;
 }
 
@@ -407,7 +410,8 @@ circle-progress::part(text) {
     display: flex;
     flex-direction: column;
     align-items: start;
-    overflow: scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
 
 }
 
