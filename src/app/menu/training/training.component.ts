@@ -73,7 +73,7 @@ export class TrainingComponent implements OnInit, AfterViewInit {
   openMedia(video: trainingDTO){
     console.log(1, video);
     this.dialog.open(TrainingDialogComponent, {
-      data: video
+      data: video,
     });
   }
  
