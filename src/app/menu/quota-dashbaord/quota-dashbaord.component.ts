@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { QuotaDashboardService } from './quota-dashboard.service';
-
 import CircleProgress from 'js-circle-progress';
 import { Invoice, UserDto , City} from 'src/app/domain/user.dto';
 
@@ -9,12 +8,10 @@ import { Invoice, UserDto , City} from 'src/app/domain/user.dto';
   templateUrl: './quota-dashbaord.component.html',
   styleUrls: ['./quota-dashbaord.component.scss'],
 })
-
-
 export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
+
   user: UserDto = new UserDto;
   
-
   constructor(private service: QuotaDashboardService) {
     var fam = new UserDto()
     fam.name = "Alice";
@@ -22,7 +19,6 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
     fam.userQuota = 3;
     fam.age = 11;
     fam.gender = "Femme";
-
 
     this.user.name = "Jhon";
     this.user.lastname = "Doe";
@@ -48,11 +44,15 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
       ],["je suis une sanction à venir"])
 
   }
+  
+  ngOnInit(): void {
+    // this.service.getData().subscribe((data)=>{
+    //   this.user = data;
+    // })
+  }
+
   ngAfterViewInit(): void {
     const cp = new CircleProgress();
+  }
 
-    //document.getElementById("quota")?.appendChild(cp);
-  }
-  ngOnInit(): void {
-  }
 }
