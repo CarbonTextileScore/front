@@ -15,4 +15,9 @@ export class BarterService {
         const url = ''; // Faire l'appel API, on verra comment ça marche
         return this.httpClient.get<MarketItemDTO[]>(url);
     }
+
+    getMarketItemsWithKeyword(keyWord:string = ''):Observable<MarketItemDTO[]> {
+        const url = this.apiUrl + ''; // Faire l'appel API, on verra comment ça marche
+        return this.httpClient.get<MarketItemDTO[]>(url);
+    }
 }
