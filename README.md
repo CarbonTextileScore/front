@@ -1,5 +1,9 @@
 # Guide
 
+## launching
+
+    ng serve --port 8180 --host 0.0.0.0
+
 ## Version requirements
 
 - NodeJS >= 16.15.0

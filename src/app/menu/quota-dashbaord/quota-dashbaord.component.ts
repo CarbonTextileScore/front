@@ -36,7 +36,7 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
       }
     }
     if(count == 0) {
-      return "aucun enfant";
+      return "Aucun enfant";
     } else if(count == 1) {
       return "1 enfant";
     } else {
@@ -54,7 +54,7 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
   }
 
   familyStatus(pers: UserDto) {
-    if(pers.age! > 18) {
+    if(pers.age! < 18) {
       return "enfant";
     } else if(pers.age! > 64) {
       return "grand-parent";
