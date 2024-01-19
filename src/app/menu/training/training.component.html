@@ -1,0 +1,42 @@
+
+<div class="container" fxLayout="column" fxLayoutAlign="start stretch">
+  <h1>Formations</h1>
+
+  <div *ngFor="let categoryVideos of this.filteredVideoList; let i = index" id="category">
+    <h2> {{categoryVideos.categoryName}} </h2>
+    
+    <div id="category-scroll">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" id="items-scroll" #scrollContainer>
+
+        <div *ngFor="let video of categoryVideos.videoList" id="item">
+
+          <img src={{videoPicture}} alt="image" id="video-picture" (click)="this.redirectToYouTubeVideo(video.video)"/>
+  
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" id="data" (click)="openMedia(video)">
+            <img src={{this.userPicture}} alt="image" id="user-picture" fxFlex="20"/>
+            <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="75">
+              <div>{{video.name}}</div>
+              <div id="username">{{video.userFullName}}</div>
+              <div id="score">{{video.score}} étoiles</div>
+            </div>
+          </div>
+        </div>   
+
+      </div>
+
+      <button (click)="scroll(i, 'left')" id="left{{i}}" class="btn-left">
+        <span>&#9665;</span>
+      </button>
+
+      <button (click)="scroll(i, 'right')" id="right{{i}}" class="btn-right">
+        <span>&#9655;</span>
+      </button>
+
+    </div> 
+
+  </div>
+</div>
+
+
+  
+  

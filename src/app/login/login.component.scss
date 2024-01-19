@@ -1,0 +1,16 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#titleText{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+mat-form-field, button {
+    width: 30%;
+}

@@ -1,1 +1,21 @@
-<p>menu works!</p>
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li (click)="switchMenuItem('dashboard')" [ngClass]="selectedPage === 'dashboard' ? 'selectedItem' : ''">
+                <mat-icon>account_circle</mat-icon>
+            </li>
+            <li (click)="switchMenuItem('training')" [ngClass]="selectedPage === 'training' ? 'selectedItem' : ''">
+                <mat-icon>bookmark</mat-icon>
+            </li>
+            <li (click)="switchMenuItem('barter')" [ngClass]="selectedPage === 'barter' ? 'selectedItem' : ''">
+                <mat-icon>store</mat-icon>
+            </li>
+        </ul>
+        <button class="logout-button" (click)="this.authService.logout()">Log Out</button>
+    </div>
+
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+  

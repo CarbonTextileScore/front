@@ -1,0 +1,76 @@
+.container{
+    height: 100%;
+}
+
+.subContainer{
+    padding: 15px;
+    margin: 10px;
+    background-color: #2B2D31;
+    border-radius: 15px;
+    border: 1px solid black;
+
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+
+a {
+    all: unset;
+}
+
+.sale-image {
+    border-radius: 20px 20px 0 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-right: 10%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.card-price, .card-quota {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    float: right;
+}
+
+.card-city {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.card-description {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+.search-bar {
+    width: 300px;
+    background-color: #2B2D31;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background-color: #2B2D31;
+    color: white;
+}
+
+.search-bar button {
+    border: none;
+    background: none;
+}
+
+
