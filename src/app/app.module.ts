@@ -69,7 +69,7 @@ import { QuotaDialogComponent } from './menu/quota-dashbaord/quota-dialog/quota-
     MatSidenavModule,
     MatButtonModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

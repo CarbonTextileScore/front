@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TrainingDTO } from 'src/app/domain/training.DTO';
 
@@ -7,15 +7,10 @@ import { TrainingDTO } from 'src/app/domain/training.DTO';
   templateUrl: './training-dialog.component.html',
   styleUrls: ['./training-dialog.component.scss']
 })
-export class TrainingDialogComponent implements OnInit{
+export class TrainingDialogComponent{
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: TrainingDTO
   ) {}
-
-  ngOnInit(): void {
-    console.log(2, this.data);
-  }
-
 
 }

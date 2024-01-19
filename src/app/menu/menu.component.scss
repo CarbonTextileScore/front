@@ -1,79 +1,74 @@
-.container{
-    height: 100%;
+.container {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    height: 100vh;
 }
-
-#drawer{
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(calc(-50% - 20px));
-    height: 70%;
-    width: 70px;
-
+  
+.sidebar {
+    width: 75px;
     background-color: #2B2D31;
-    margin: 20px 15px;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 1px solid black;
-
+    padding: 15px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
+    justify-content: space-between;
 }
 
-.menu-item {
-    width: 50px !important;
-    height: 50px !important;
-    margin: 20px 0;
-    border-radius: 15px;
-    background-color: transparent;
+.sidebar ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 10px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #333;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition-duration: 300ms;
+    justify-content: center;
 }
 
-.menu-item:hover {
+.selectedItem{
+    background-color: rgb(97, 97, 97)!important;
+}
+
+.sidebar mat-icon {
+    width: auto;
+    color: white;
     cursor: pointer;
 }
-
-.menu-item:hover>mat-icon {
-    color: #2B2D31;
+ 
+.sidebar mat-icon:hover {
+    opacity: 0.8;
 }
-.menu-item.selected {
-    background-color: white;
-    transition-duration: 200ms;
-}
-
-
-
-@media (max-aspect-ratio: 4/5){
-    .container{
-        height: 100%;
-        padding-left: 0;
-    }
-
-    #drawer{
-        position: fixed;
-        left: 50%;
-        top: calc(100% - 40px);
-        transform: translateX(calc(-50% - 20px)) translateY(-100%);
-        bottom: 20px;
-        height: 70px;
-        width: 70%;
-        flex-direction: row;
-    }
+  
+.logout-button {
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-top: auto;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
 }
 
-#content{
-    height: 100%;
-    width: 92%;
+.logout-button:hover, ul li:hover {
+    background-color: rgb(97, 97, 97);
 }
 
+.main-content{
+    flex: 1; 
+    padding: 50px 50px 10px 50px;
+    overflow: auto;
+    box-sizing: border-box;
+    height: 100vh;
+}
+  

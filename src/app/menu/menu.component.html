@@ -1,28 +1,21 @@
 <div class="container">
-    <div id="drawer">
-        <div class="menu-item selected" id="item-dashboard" (click)="this.switchMenuItem('dashboard','item-dashboard')">
-            <img
-            src="../../assets/resources/circle-user.svg"
-            alt="triangle with all three sides equal"
-            height="30"
-            width="30" />
-        </div>
-        <div class="menu-item" id="item-formation" (click)="this.switchMenuItem('training','item-formation')">
-            <img
-            src="../../assets/resources/book-bookmark.svg"
-            alt="triangle with all three sides equal"
-            height="30"
-            width="30"/>
-        </div>
-        <div class="menu-item" id="item-marketplace" (click)="this.switchMenuItem('barter','item-marketplace')">
-            <img
-            src="../../assets/resources/store-alt.svg"
-            alt="triangle with all three sides equal"
-            height="30"
-            width="30" />
-        </div>
+    <div class="sidebar">
+        <ul>
+            <li (click)="switchMenuItem('dashboard')" [ngClass]="selectedPage === 'dashboard' ? 'selectedItem' : ''">
+                <mat-icon>account_circle</mat-icon>
+            </li>
+            <li (click)="switchMenuItem('training')" [ngClass]="selectedPage === 'training' ? 'selectedItem' : ''">
+                <mat-icon>bookmark</mat-icon>
+            </li>
+            <li (click)="switchMenuItem('barter')" [ngClass]="selectedPage === 'barter' ? 'selectedItem' : ''">
+                <mat-icon>store</mat-icon>
+            </li>
+        </ul>
+        <button class="logout-button" (click)="this.authService.logout()">Log Out</button>
     </div>
-    <div id="content">
+
+    <div class="main-content">
         <router-outlet></router-outlet>
     </div>
 </div>
+  
