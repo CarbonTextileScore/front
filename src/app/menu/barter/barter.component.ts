@@ -37,8 +37,7 @@ export class BarterComponent implements OnInit {
   }
 
   buyProduct(product: MarketItemDTO){
-    console.log(product);
-    this.barterService.applyPunishment(product);
+    this.barterService.buyProduct(product);
   }
 
 }

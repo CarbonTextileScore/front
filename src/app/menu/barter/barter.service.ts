@@ -24,10 +24,13 @@ export class BarterService {
     }
 
     
-    applyPunishment(action: MarketItemDTO){
+    buyProduct(action: MarketItemDTO){
         var headers = new HttpHeaders();
         headers = headers.set('Token', this.mainService.getToken().access);
-        return this.httpClient.post<MarketItemDTO>(apiUrl + `invoice`, action, {headers: headers});
+        
+        return this.httpClient.post<MarketItemDTO>(apiUrl + `invoice`, action, {headers: headers}).subscribe(()=>{
+            console.log(3)
+        });
     }
 
 }

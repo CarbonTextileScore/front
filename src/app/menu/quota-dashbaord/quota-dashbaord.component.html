@@ -78,7 +78,7 @@
             <div class="transaction-line" *ngFor="let inv of user.invoices">
                 <div class="transac__title">{{inv.productQualifier}}</div>
                 <div class="transac__date">{{inv.date}}</div>
-                <div class="transac__montant">{{inv.productPrice}}€</div>
+                <div class="transac__montant">{{inv.price}}€</div>
                 <div [class]=quotaColor(inv)>{{quotaFormatted(inv)}}cc</div>
             </div>
             

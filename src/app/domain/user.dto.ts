@@ -29,13 +29,13 @@ export class City {
 export class Invoice {
   productQualifier?: string;
   date?: string;
-  productPrice?: number;
+  price?: number;
   quota?: number;
 
-  constructor(productQualifier: string, date: string, productPrice: number, quota: number) {
+  constructor(productQualifier: string, date: string, price: number, quota: number) {
     this.productQualifier= productQualifier;
     this.date = date;
-    this.productPrice = productPrice;
+    this.price = price;
     this.quota = quota;
   }
 }
