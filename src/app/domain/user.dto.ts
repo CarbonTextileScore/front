@@ -42,11 +42,15 @@ export class Invoice {
 
 
 export class Action {
+  id: number;
   label: string;
   quota: number;
+  tigName: string;
 
-  constructor(label: string, quota: number) {
+  constructor(id: number, label: string, quota: number, tigName : string) {
+    this.id = id;
     this.label = label;
     this.quota = quota;
+    this.tigName = tigName;
   }
 }

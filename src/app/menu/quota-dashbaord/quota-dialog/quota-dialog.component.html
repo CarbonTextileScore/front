@@ -3,8 +3,9 @@
 
 <p>Vous avez atteint le quota maximal.<br/>Vous devez donc effectuer une des actions ci-dessous.</p>
 <mat-dialog-content>
-    <div class="action-item" *ngFor="let action of actions">
+    <div class="action-item" *ngFor="let action of actions" (click)="apply(action.id)" mat-dialog-close>
       <h1>{{action.label}}</h1>
+      <p>{{action.tigName}}</p>
       <p>{{action.quota}} cc</p>
     </div>
 </mat-dialog-content>
