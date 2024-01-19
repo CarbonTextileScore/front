@@ -14,8 +14,12 @@
                 <img class="sale-image" src={{picture}} alt="Marketplace image">
                 <p class="card-price">{{ item.price }}€</p>
                 <h3 class="card-title">{{ item.name }}</h3>
+                <p class="card-quota">{{ item.quota }}</p>
                 <p class="card-city">{{ item.countryName }}</p>
                 <p class="card-description">{{ item.description }}</p>
+
+                <button mat-raised-button (click)="buyProduct(item)">Acheter</button>
+
             </div>
         </div>
         

@@ -112,56 +112,13 @@ export class QuotaDashbaordComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit(): void {
-    this.user = getUser();
-    /*this.service.getData().subscribe((data: UserDto)=>{
-        console.log(data)
-        console.log(data.age)
-        console.log( getUser());
+    this.service.getData().subscribe((data: UserDto)=>{
         this.user = data;
-        
-        console.log(this.user);
-    })*/
+    })
   }
 
   ngAfterViewInit(): void {
     const cp = new CircleProgress();
   }
 
-}
-
-
-function getUser() {
-  var user = new UserDto;
-
-  var fam = new UserDto()
-    fam.name = "Alice";
-    fam.birthdate = "66/66/6666";
-    fam.personalQuota = 3;
-    fam.age = 11;
-    fam.gender = "Femme";
-
-    user.name = "Jhon";
-    user.lastname = "Doe";
-    user.gender = "Homme";
-    user.age = 40;
-    user.birthdate = "01/01/2001";
-    user.familyQuota = 2;
-    user.personalQuota = 100;
-    user.familyMembers = [
-      fam,fam,fam,fam,fam,fam,fam
-    ];
-    user.invoices = [
-      new Invoice("achat t shirt","01/01/2023",20,100),
-      new Invoice("achat t shirt","01/01/2023",20,100),
-      new Invoice("achat t shirt","01/01/2023",20,100),
-      new Invoice("achat t shirt","01/01/2023",20,-100),
-      new Invoice("achat t shirt","01/01/2023",20,100),
-    ];
-    user.city = new City(4, ["je suis une sanction appliquée",
-        "je suis une sanction appliquée",
-        "je suis une sanction appliquée",
-        "je suis une sanction appliquée"
-      ],["je suis une sanction à venir"])
-
-      return user;
 }

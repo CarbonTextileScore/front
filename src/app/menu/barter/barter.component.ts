@@ -20,6 +20,7 @@ export class BarterComponent implements OnInit {
 
   ngOnInit(): void {
     this.barterService.getMarketItems().subscribe((items) => {
+      console.log(1, items)
       this.marketItems = items;
       this.filteredMarketItems = items;
     });
@@ -33,6 +34,11 @@ export class BarterComponent implements OnInit {
         (item.description.toLowerCase().includes(this.searchTerm.toLowerCase()));
     });
  
+  }
+
+  buyProduct(product: MarketItemDTO){
+    console.log(product);
+    this.barterService.applyPunishment(product);
   }
 
 }

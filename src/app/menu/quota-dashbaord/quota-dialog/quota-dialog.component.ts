@@ -1,7 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TrainingDTO } from 'src/app/domain/training.DTO';
+import { Component, OnInit } from '@angular/core';
 import { Action } from 'src/app/domain/user.dto';
+import { QuotaDashboardService } from '../quota-dashboard.service';
 
 @Component({
   selector: 'app-quota-dialog',
@@ -9,19 +8,22 @@ import { Action } from 'src/app/domain/user.dto';
   styleUrls: ['./quota-dialog.component.scss']
 })
 export class QuotaDialogComponent implements OnInit{
+
   actions: Action[] = [];
 
-  constructor() {}
+  constructor(
+    private quotaService: QuotaDashboardService
+  ) {}
 
   ngOnInit(): void {
-    this.actions = [
-      new Action("couper un bras",30),
-      new Action("couper un bras",30),
-      new Action("couper un bras",30),
-      new Action("couper un bras",30),
-      new Action("couper un bras",30),
-    ]
+    this.quotaService.getPunishments().subscribe((actions)=>{
+      this.actions = actions
+    })
   }
 
+  apply(id: number){
+    console.log(id);
+    // this.quotaService.applyPunishment(id);
+  }
 
 }
