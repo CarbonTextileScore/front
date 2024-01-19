@@ -3,7 +3,13 @@
 ## Version requirements
 
 - NodeJS >= 16.15.0
+
+    sude apt install nodejs
+
 - npm >= 9.19.2
+
+    sudo apt install npm
+
 
 ## Installations
 
@@ -19,15 +25,17 @@ npm i @angular/flex-layout
 
 - Cookie Service
 ```
-npm i ngx-cookie-service
+npm i ngx-cookie-service@16.1.0
 ```
 
 - JWT Decode
 ```
 npm i jwt-decode
 ```
-
-    npm install --save js-circle-progress
+- Circle progress
+```
+npm install --save js-circle-progress
+```
 
 ## Project launch
 ```
